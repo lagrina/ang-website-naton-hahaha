@@ -352,6 +352,14 @@ form button:hover {
     padding: 30px;
 }
 
+.portal_nav_toggle {
+    display: none;
+}
+
+.mobile_nav_bar {
+    display: none;
+}
+
 .portal_page {
     width: 100%;
     min-height: 100vh;
@@ -389,7 +397,88 @@ form button:hover {
         border-bottom: 1px solid #e7ecff;
     }
 
+    .portal_page.mobile-nav-ready .portal_nav {
+        display: none !important;
+    }
+
+    .portal_page.mobile-nav-ready .portal_nav.is-open {
+        display: grid !important;
+    }
+
+    .mobile_nav_bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 52px;
+        margin: 0 0 8px;
+        padding: 6px 12px;
+        border: 0;
+        border-bottom: 1px solid #e7ecff;
+        border-radius: 0;
+        background: #ffffff;
+    }
+
+    .portal_nav_toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: #000758;
+        cursor: pointer;
+    }
+
+    .portal_nav_toggle:hover {
+        background: #f5f7fd;
+    }
+
+    .mobile_nav_logo {
+        display: block;
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+    }
+
+    .mobile_nav_icon {
+        display: grid;
+        gap: 5px;
+        width: 24px;
+        padding: 4px 2px;
+    }
+
+    .mobile_nav_icon span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background: #000758;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .portal_nav_toggle[aria-expanded="true"] .mobile_nav_icon span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .portal_nav_toggle[aria-expanded="true"] .mobile_nav_icon span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .portal_nav_toggle[aria-expanded="true"] .mobile_nav_icon span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .portal_nav_toggle:focus-visible {
+        outline: 3px solid #626cd6;
+        outline-offset: 2px;
+    }
+
     .portal_page .portal_nav img {
+        display: none;
         grid-column: 1 / -1;
         justify-self: center;
         width: 42px;
