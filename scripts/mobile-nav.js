@@ -1,70 +1,65 @@
 const navs = document.querySelectorAll(".portal_page .portal_nav");
 
-navs.forEach((nav, index) => {
+navs.forEach((nav, i) => {
   const page = nav.closest(".portal_page");
   const bar = document.createElement("div");
-  const button = document.createElement("button");
+  const btn = document.createElement("button");
   const icon = document.createElement("span");
+  const logo = nav.querySelector("img");
 
-  nav.id = `portal-navigation-${index + 1}`;
+  nav.id = "portal-navigation-" + (i + 1);
   page.classList.add("mobile-nav-ready");
   nav.classList.remove("is-open");
-
   bar.className = "mobile_nav_bar";
 
-  const logo = nav.querySelector("img");
   if (logo) {
-    const logoCopy = logo.cloneNode();
-    logoCopy.alt = "";
-    logoCopy.className = "mobile_nav_logo";
-    bar.appendChild(logoCopy);
+    const copy = logo.cloneNode();
+    copy.alt = "";
+    copy.className = "mobile_nav_logo";
+    bar.appendChild(copy);
   }
 
-  button.type = "button";
-  button.className = "portal_nav_toggle";
-  button.setAttribute("aria-controls", nav.id);
-  button.setAttribute("aria-expanded", "false");
-  button.setAttribute("aria-label", "Show navigation");
+  btn.type = "button";
+  btn.className = "portal_nav_toggle";
+  btn.setAttribute("aria-controls", nav.id);
+  btn.setAttribute("aria-expanded", "false");
+  btn.setAttribute("aria-label", "Show navigation");
 
   icon.className = "mobile_nav_icon";
   icon.setAttribute("aria-hidden", "true");
 
-  for (let i = 0; i < 3; i++) {
+  for (let x = 0; x < 3; x++) {
     icon.appendChild(document.createElement("span"));
   }
 
-  button.appendChild(icon);
-  bar.appendChild(button);
+  btn.appendChild(icon);
+  bar.appendChild(btn);
   page.insertBefore(bar, nav);
 
-  function closeMenu() {
+  const closeMenu = () => {
     nav.classList.remove("is-open");
-    button.setAttribute("aria-expanded", "false");
-    button.setAttribute("aria-label", "Show navigation");
-  }
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Show navigation");
+  };
 
-  button.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    button.setAttribute("aria-expanded", isOpen);
-    button.setAttribute("aria-label", isOpen ? "Hide navigation" : "Show navigation");
+  btn.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", open);
+    btn.setAttribute("aria-label", open ? "Hide navigation" : "Show navigation");
   });
 
-  nav.addEventListener("click", (event) => {
-    if (event.target instanceof Element && event.target.closest("a")) {
+  nav.addEventListener("click", (e) => {
+    if (e.target.closest("a")) closeMenu();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
       closeMenu();
+      btn.focus();
     }
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && nav.classList.contains("is-open")) {
-      closeMenu();
-      button.focus();
-    }
-  });
-
-  window.matchMedia("(max-width: 700px)").addEventListener("change", (event) => {
-    if (!event.matches) {
-      closeMenu();
-    }
+  window.matchMedia("(max-width: 700px)").addEventListener("change", (e) => {
+    if (!e.matches) closeMenu();
   });
 });
