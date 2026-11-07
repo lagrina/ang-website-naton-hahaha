@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* This applies to all the elements of the webpage. Do not move this to the body tag. */
 * {
     margin: 0;
     padding: 0;
@@ -17,11 +18,12 @@ body {
     background: #626cd6;
     justify-content: flex-start;
     align-items: center;
-    background-image: url('images/bg-deans.png');
+    background-image: url('images/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* STOP SCORLLING! */
+    background-attachment: fixed;
+    /* STOP SCORLLING! */
 }
 
 .cards h1 {
@@ -37,7 +39,6 @@ body {
     align-items: center;
     gap: 20px;
     margin: auto 0 18px;
-    /* transform: translateX(350px); Set the X axis here hahaha.... */
     align-self: center;
     background: #fff;
     border-radius: 6px;
@@ -130,15 +131,6 @@ form .input_box {
 .password_box input {
     padding-right: 75px !important;
 }
-
-/* a {
-    text-decoration: none;
-    color: #626cd6;
-    font-weight: 500;
-}
-a:hover {
-    text-decoration: underline;
-} */
 
 .forgot_details {
     margin-top: -14px;
@@ -266,7 +258,7 @@ form button:hover {
     line-height: 1.5;
 }
 
-/* animation para sa login box */
+/* login box animations */
 @keyframes appear {
     from {
         opacity: 0;
@@ -406,6 +398,9 @@ form button:hover {
     }
 
     .mobile_nav_bar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -457,19 +452,6 @@ form button:hover {
         height: 2px;
         border-radius: 2px;
         background: #000758;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .portal_nav_toggle[aria-expanded="true"] .mobile_nav_icon span:first-child {
-        transform: translateY(7px) rotate(45deg);
-    }
-
-    .portal_nav_toggle[aria-expanded="true"] .mobile_nav_icon span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .portal_nav_toggle[aria-expanded="true"] .mobile_nav_icon span:last-child {
-        transform: translateY(-7px) rotate(-45deg);
     }
 
     .portal_nav_toggle:focus-visible {
@@ -773,7 +755,8 @@ https://stackoverflow.com/questions/7190898/progress-bar-with-html-and-css
     border-radius: 8px;
     font-size: 15px;
     line-height: 1.2;
-    text-decoration: none; /* be gone (a) decors */
+    text-decoration: none;
+    /* be gone (a) decors */
 }
 
 .tab-button.active {
@@ -983,6 +966,7 @@ https://stackoverflow.com/questions/7190898/progress-bar-with-html-and-css
         font-size: 23px;
     }
 
+    /* Progress bars */
     #progressbar {
         width: 100%;
     }
